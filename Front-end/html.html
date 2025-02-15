@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tip Itinerary Planner</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-900">
+    <header class="text-center py-6 bg-blue-600 text-white text-3xl font-bold">
+        Smart Itinerary Planner
+    </header>
+    
+    <div class="mt-4 max-w-4xl mx-auto px-6 flex justify-center space-x-4">
+        <a href="contact_me.html" class="flex-1 px-6 py-3 text-lg bg-white text-blue-600 rounded-lg shadow-md text-center hover:bg-gray-200 transition">Contact Me</a>
+        <a href="organizations_page.html" class="flex-1 px-6 py-3 text-lg bg-white text-blue-600 rounded-lg shadow-md text-center hover:bg-gray-200 transition">Organizations</a>
+        <a href="creators_info.html" class="flex-1 px-6 py-3 text-lg bg-white text-blue-600 rounded-lg shadow-md text-center hover:bg-gray-200 transition">Creators Info</a>
+    </div>
+    
+    <main class="max-w-4xl mx-auto p-6 mt-6">
+        <section id="itinerary-form" class="bg-white p-6 rounded-lg shadow-md mb-6">
+            <h2 class="text-2xl font-semibold mb-4">Plan Your Trip</h2>
+            <form id="trip-form" class="space-y-4">
+                <div>
+                    <label for="destination" class="block text-sm font-medium">Destination:</label>
+                    <input type="text" id="destination" class="w-full p-2 border rounded-lg" required>
+                </div>
+                <div>
+                    <label for="start-date" class="block text-sm font-medium">Start Date:</label>
+                    <input type="date" id="start-date" class="w-full p-2 border rounded-lg" required>
+                </div>
+                <div>
+                    <label for="end-date" class="block text-sm font-medium">End Date:</label>
+                    <input type="date" id="end-date" class="w-full p-2 border rounded-lg" required>
+                </div>
+                <button type="button" onclick="generateItinerary()" class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700">Generate Itinerary</button>
+            </form>
+        </section>
+        
+        <section id="itinerary-display" class="bg-white p-6 rounded-lg shadow-md mb-6">
+            <h2 class="text-2xl font-semibold mb-4">Your Itinerary</h2>
+            <ul id="itinerary-list" class="list-disc pl-5"></ul>
+        </section>
+
+        <section id="cultural-sensitivity" class="bg-white p-6 rounded-lg shadow-md mb-6">
+            <h2 class="text-2xl font-semibold mb-4">Cultural Sensitivity Guide</h2>
+            <p id="cultural-info" class="text-gray-700">Select a destination to view relevant cultural tips.</p>
+        </section>
+
+        <section id="local-travel-guide" class="bg-white p-6 rounded-lg shadow-md">
+            <h2 class="text-2xl font-semibold mb-4">Local-First Travel Guide</h2>
+            <p id="local-info" class="text-gray-700">Discover hidden gems and authentic experiences at your destination.</p>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

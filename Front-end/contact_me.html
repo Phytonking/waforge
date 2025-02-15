@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Me</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-900">
+    <header class="text-center py-6 bg-blue-600 text-white text-3xl font-bold">
+        Contact Me
+    </header>
+    <div class="mt-4 max-w-4xl mx-auto px-6 flex justify-center space-x-4">
+        <a href="html.html" class="flex-1 px-6 py-3 text-lg bg-white text-blue-600 rounded-lg shadow-md text-center hover:bg-gray-200 transition">Home</a>
+    </div>
+    <main class="max-w-4xl mx-auto p-6">
+        <section class="bg-white p-6 rounded-lg shadow-md">
+            <h2 class="text-2xl font-semibold mb-4">Get in Touch</h2>
+            <p>If you have any questions, feel free to reach out!</p>
+            <form class="space-y-4 mt-4">
+                <div>
+                    <label for="name" class="block text-sm font-medium">Name:</label>
+                    <input type="text" id="name" class="w-full p-2 border rounded-lg" required>
+                </div>
+                <div>
+                    <label for="email" class="block text-sm font-medium">Email:</label>
+                    <input type="email" id="email" class="w-full p-2 border rounded-lg" required>
+                </div>
+                <div>
+                    <label for="message" class="block text-sm font-medium">Message:</label>
+                    <textarea id="message" class="w-full p-2 border rounded-lg" rows="4" required></textarea>
+                </div>
+                <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700">Send Message</button>
+            </form>
+        </section>
+    </main>
+</body>
+</html>
