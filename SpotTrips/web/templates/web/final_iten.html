@@ -53,7 +53,7 @@
                         <p class="mt-2 text-gray-600"><strong>Duration:</strong> {{ flight.duration }} minutes</p>
                         <p class="mt-2 text-gray-600"><strong>Airplane:</strong> {{ flight.airplane }}</p>
                         <p class="mt-2 text-gray-600"><strong>Class:</strong> {{ flight.travel_class }}</p>
-                        <p class="mt-2 text-gray-600"><strong>Legroom:</strong> {{ flight.legroom }} in</p>
+                        <p class="mt-2 text-gray-600"><strong>Legroom:</strong> {{ flight.legroom }}</p>
                         <h4 class="mt-2 text-gray-600"><strong>Price:</strong> $ {{ flight.price }}</h4>
 
                         <!-- Airline Image -->
@@ -61,11 +61,11 @@
 
                         <!-- Additional Info -->
                         <ul class="mt-4 text-gray-600 list-disc list-inside">
-                            <li>Average legroom ({{ flight.legroom }} in)</li>
+                            <li>Average legroom ({{ flight.legroom }})</li>
                             <li>Wi-Fi for a fee</li>
                             <li>In-seat power & USB outlets</li>
                             <li>Stream media to your device</li>
-                            <li>Carbon emissions estimate: {{ flight.carbon_emissions }} kg</li>
+                            <li>Carbon emissions estimate: {{ flight.carbon_emissions.this_flight }} kg</li>
                         </ul>
                     </div>
             {% empty %}

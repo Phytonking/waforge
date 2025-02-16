@@ -13,7 +13,7 @@ from django.urls import reverse
 from web.utils import *
 import json
 
-from flask import redirect
+#from flask import redirect
 from scroll.utils import *
 # Create your views here.
 
