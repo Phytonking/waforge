@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TIP: Travel Itinerary Planner</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-orange-100 text-gray-900 h-screen flex flex-col">
+    <nav class="bg-gray-100 text-black p-4 shadow-md">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="#" class="text-xl font-semibold">TIP: Travel Itinerary Planner</a>
+            <ul class="flex space-x-4 text-sm">
+                <li><a href="#" class="hover:text-gray-300">Home</a></li>
+                <li><a href="#" class="hover:text-gray-300">Services</a></li>
+                <li><a href="#" class="hover:text-gray-300">About</a></li>
+                <li><a href="#" class="hover:text-gray-300">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <header class="bg-sky-100 text-center py-16 flex-grow flex items-center justify-center">
+        <div>
+            <h1 class="text-4xl font-semibold text-black">Plan Your Perfect Trip</h1>
+            <p class="text-black-500 mt-2">Effortless itinerary planning for travelers</p>
+        </div>
+    </header>
+
+    <section class="container mx-auto p-8 flex-grow">
+        <h2 class="text-2xl font-medium text-center mb-6 text-orange-700">How TIP Can Help You</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-white p-6 rounded-lg shadow-md border border-orange-200">
+                <h3 class="text-lg font-medium text-orange-700">Personalized Itinerary Creation</h3>
+                <p class="mt-2 text-gray-600">Our tool generates customized travel itineraries based on your preferences, such as departure area, dates, and budget. No more stress or confusion—just a seamless travel plan tailored for you.</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-md border border-orange-200">
+                <h3 class="text-lg font-medium text-orange-700">Budget-Friendly Planning</h3>
+                <p class="mt-2 text-gray-600">TIP takes your budget into account when creating the perfect itinerary. We help you choose cost-effective options without compromising the quality of your trip, making sure you get the best value for your money.</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-md border border-orange-200">
+                <h3 class="text-lg font-medium text-orange-700">Time-Saving Experience</h3>
+                <p class="mt-2 text-gray-600">We save you hours of research and planning by putting all the information you need in one place. With TIP, you can focus on enjoying your trip instead of stressing over logistics.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Middle Divider and Form Section -->
+    <section class="bg-white py-12 flex-grow">
+        <div class="container mx-auto text-center">
+            <h2 class="text-2xl font-medium text-orange-700 mb-8">Enter Your Travel Details</h2>
+            <form class="space-y-6 max-w-lg mx-auto bg-gray-100 p-8 rounded-lg shadow-md" action="{% url 'web:generate' %}" method="POST">
+                {% csrf_token %}
+                <div>
+                    <label for="departure-area" class="block text-sm font-medium text-gray-700">Depart From</label>
+                    <input type="text" id="departure-area" name="departure-area" class="mt-2 w-full p-3 border border-gray-300 rounded-md" placeholder="Enter your departure area">
+                </div>
+                <div>
+                    <label for="departure-date" class="block text-sm font-medium text-gray-700">Departure Date</label>
+                    <input type="date" id="departure-date" name="departure-date" class="mt-2 w-full p-3 border border-gray-300 rounded-md">
+                </div>
+                <div>
+                    <label for="arrival-date" class="block text-sm font-medium text-gray-700">Arrival Date</label>
+                    <input type="date" id="arrival-date" name="arrival-date" class="mt-2 w-full p-3 border border-gray-300 rounded-md">
+                </div>
+                <div>
+                    <label for="budget" class="block text-sm font-medium text-gray-700">Budget</label>
+                    <input type="number" id="budget" name="budget" class="mt-2 w-full p-3 border border-gray-300 rounded-md" placeholder="Enter your budget">
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="mt-4 w-full bg-sky-600 text-white p-3 rounded-md font-semibold">Plan My Trip</button>
+                </div>
+            </form>
+        </div>
+    </section>
+    
+
+    <!-- services -->
+    <section class="bg-orange-50 py-12">
+        <div class="container mx-auto text-center">
+            <h2 class="text-2xl font-medium text-orange-700 mb-8">Our Trusted Partners & Impact</h2>
+            <p class="text-gray-600 mb-6">TIP partners with leading services in the travel industry to provide you with the best travel experience. Our software integrates with top airlines, hotels, and local guides to offer seamless, real-time bookings and personalized experiences.</p>
+    
+            <!-- Statistics Section -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+                <div class="bg-white p-6 rounded-lg shadow-md border border-orange-200">
+                    <h3 class="text-2xl font-semibold text-orange-700">Over 500,000 Trips Booked</h3>
+                    <p class="mt-2 text-gray-600">Join thousands of satisfied travelers who have booked their trips with TIP.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md border border-orange-200">
+                    <h3 class="text-2xl font-semibold text-orange-700">1 Million+ Customized Itineraries</h3>
+                    <p class="mt-2 text-gray-600">Our platform has created over a million itineraries that make planning your perfect trip effortless.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md border border-orange-200">
+                    <h3 class="text-2xl font-semibold text-orange-700">Available in 50+ Countries</h3>
+                    <p class="mt-2 text-gray-600">From the beaches of Bali to the streets of New York, TIP is trusted by travelers all over the world.</p>
+                </div>
+            </div>
+    
+            <!-- Partner Logos -->
+            <div class="mb-12">
+                <h3 class="text-lg font-medium text-orange-700 mb-4">Our Trusted Partners</h3>
+                <div class="flex justify-center space-x-8">
+                    <!-- Google Logo -->
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/1200px-Google_2015_logo.svg.png" alt="Google" class="h-12" />
+                    <!-- Booking.com Logo -->
+                    <img src="https://banner2.cleanpng.com/20190313/iyx/kisspng-booking-com-hotel-logo-discounts-and-allowances-ro-booking-com-hunter-mason-5c88a13ddbf9c1.296745251552458045901.jpg" alt="Booking.com" class="h-12" />
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    
+    
+    
+    <footer class="bg-gray-100 text-black text-center p-4 text-sm mt-auto">
+        <p>&copy; 2025 TIP: Travel Itinerary Planner. All rights reserved.</p>
+    </footer>
+</body>
+</html>
