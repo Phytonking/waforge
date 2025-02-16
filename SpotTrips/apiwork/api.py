@@ -42,7 +42,7 @@ def find_flights(departure, destination, departure_date, arrival_date):
     try:
         arrvial = a.json()['best_flights'][0]
     except Exception as e:
-        arrival = a.json()["error"]
+        arrival = {"error": "no return flight found, reload page. "}
     print(departure, arrvial)
     return [departure, arrvial]
 
