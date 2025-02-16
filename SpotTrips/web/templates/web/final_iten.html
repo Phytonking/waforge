@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TIP: Travel Itinerary Planner</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-orange-100 text-gray-900 h-screen flex flex-col">
+    <nav class="bg-gray-100 text-black p-4 shadow-md">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="#" class="text-xl font-semibold">TIP: Travel Itinerary Planner</a>
+            <ul class="flex space-x-4 text-sm">
+                <li><a href="#" class="hover:text-gray-300">Home</a></li>
+                <li><a href="#" class="hover:text-gray-300">Services</a></li>
+                <li><a href="#" class="hover:text-gray-300">About</a></li>
+                <li><a href="#" class="hover:text-gray-300">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    
+    <section class="container mx-auto p-8 flex-grow">
+        
+        <h2 class="text-2xl font-medium text-center mb-6 text-orange-700">YOUR ITINERARY</h2>
+ 
+        <!--
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-white p-6 rounded-lg shadow-md border border-orange-200">
+                <h3 class="text-lg font-medium text-orange-700">Personalized Itinerary Creation</h3>
+                <p class="mt-2 text-gray-600">{{iten.json}}</p>
+            </div>
+        </div>
+        -->
+        {% for flight in flights.flights %}
+    <div class="bg-white p-6 rounded-lg shadow-md border border-orange-200 mb-6">
+        <h3 class="text-lg font-medium text-orange-700">{{ flight.airline }} - Flight {{ flight.flight_number }}</h3>
+        
+        <p class="mt-2 text-gray-600">
+            <strong>Departure:</strong> {{ flight.departure_airport }} <br>
+            <strong>Time:</strong> {{ flight.departure_time }}
+        </p>
+        
+        <p class="mt-2 text-gray-600">
+            <strong>Arrival:</strong> {{ flight.arrival_airport }} <br>
+            <strong>Time:</strong> {{ flight.arrival_time }}
+        </p>
+
+        <p class="mt-2 text-gray-600"><strong>Duration:</strong> {{ flight.duration }} minutes</p>
+        <p class="mt-2 text-gray-600"><strong>Airplane:</strong> {{ flight.airplane }}</p>
+        <p class="mt-2 text-gray-600"><strong>Class:</strong> {{ flight.class }}</p>
+        <p class="mt-2 text-gray-600"><strong>Legroom:</strong> {{ flight.legroom }} in</p>
+
+        <!-- Airline Image -->
+        <img src="{{ flight.airline_logo }}" alt="Airline Logo" class="mt-4 w-16 h-16 object-contain">
+
+        <!-- Additional Info -->
+        <ul class="mt-4 text-gray-600 list-disc list-inside">
+            <li>Average legroom ({{ flight.legroom }} in)</li>
+            <li>Wi-Fi for a fee</li>
+            <li>In-seat power & USB outlets</li>
+            <li>Stream media to your device</li>
+            <li>Carbon emissions estimate: {{ flight.carbon_emissions }} kg</li>
+        </ul>
+    </div>
+    {% empty %}
+        <p class="text-gray-600">No flights available.</p>
+    {% endfor %}
+        
+        
+    <div class="bg-white p-6 rounded-lg shadow-md border border-orange-200">
+        <div x-data="{ currentSlide: 0 }" class="relative w-full h-48">
+            <div class="w-full h-full relative overflow-hidden rounded-lg">
+                {% for image in hotel.images %}
+                <img x-show="currentSlide === {{ forloop.counter0 }}" src="{{ image.thumbnail }}" 
+                     class="absolute inset-0 w-full h-full object-cover transition-opacity duration-500 rounded-lg" />
+                {% endfor %}
+            </div>
+
+            <!-- Slideshow Controls -->
+            <button @click="currentSlide = (currentSlide === 0) ? {{ hotel.images|length }} - 1 : currentSlide - 1"
+                    class="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white px-2 py-1 rounded-full">
+                ❮
+            </button>
+            <button @click="currentSlide = (currentSlide + 1) % {{ hotel.images|length }}"
+                    class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white px-2 py-1 rounded-full">
+                ❯
+            </button>
+        </div>
+
+        <h3 class="text-lg font-medium text-orange-700">{{ hotel.name }}</h3>
+        <p class="mt-2 text-gray-600">{{ hotel.description }}</p>
+        <p class="mt-2 text-gray-600"><strong>Class:</strong> {{ hotel.hotel_class }}</p>
+        <p class="mt-2 text-gray-600"><strong>Check-in:</strong> {{ hotel.check_in_time }}</p>
+        <p class="mt-2 text-gray-600"><strong>Check-out:</strong> {{ hotel.check_out_time }}</p>
+        <p class="mt-2 text-gray-600"><strong>Rate per night:</strong>{{ hotel.rate_per_night.lowest }}</p>
+        <p class="mt-2 text-gray-600"><strong>Total stay:</strong>{{ hotel.total_rate.lowest }}</p>
+
+        <a href="{{ hotel.link }}" class="mt-4 inline-block bg-orange-500 text-white px-4 py-2 rounded-lg shadow-md hover:bg-orange-700">
+            View Hotel
+        </a>
+
+        <!--
+        
+        <div class="mt-4 grid grid-cols-2 gap-2">
+            {% for image in hotel.images %}
+            <img src="{{ image.thumbnail }}" alt="Hotel Image" class="rounded-lg shadow-md object-cover h-24 w-full">
+            {% empty %}
+            <p class="text-gray-500">No images available.</p>
+            {% endfor %}
+        </div>
+        -->
+
+        <!-- Nearby Places -->
+        <div class="mt-4">
+            <h4 class="text-md font-medium text-gray-700">Nearby Places</h4>
+            <ul class="mt-2 text-gray-600">
+                {% for place in hotel.nearby_places %}
+                <li><strong>{{ place.name }}</strong>
+                    <ul>
+                        {% for transport in place.transportations %}
+                        <li class="text-sm text-gray-500">{{ transport.type }} - {{ transport.duration }}</li>
+                        {% empty %}
+                        <li class="text-sm text-gray-500">No transport details available.</li>
+                        {% endfor %}
+                    </ul>
+                </li>
+                {% empty %}
+                <li class="text-gray-500">No nearby places listed.</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+        
+
+        <div class="text-center">
+            <a href="{% url 'web:book_iten' id %}"><button type="submit" class="mt-4 w-full bg-sky-600 text-white p-3 rounded-md font-semibold">Book this Itinerary</button></a>
+        </div>
+    </section>
+
+    
+    
+    
+    
+    
+    <footer class="bg-gray-100 text-black text-center p-4 text-sm mt-auto">
+        <p>&copy; 2025 TIP: Travel Itinerary Planner. All rights reserved.</p>
+    </footer>
+</body>
+</html>

@@ -56,16 +56,12 @@ def get_travel_itinerary(destination, days_of_travel, budget=None, depart_from=N
                 contents=prompt,
                 config={
                     'response_mime_type': 'application/json',
+                    'temperature': 0.8
                 }
             )
-            try:
-                itinerary_json = json.loads(str(response.text))
-                return json.dumps(itinerary_json)
-            except json.JSONDecodeError as e:
-                print(f"Error decoding JSON: {e}")
-                print(f"Raw response: {response.text}")
-                continue
-
+            
+            itinerary_json = json.loads(str(response.text))
+            return json.dumps(itinerary_json)
         except Exception as e:
             print(f"Error generating itinerary: {e}")
             continue
