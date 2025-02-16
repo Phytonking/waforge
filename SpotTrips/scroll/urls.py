@@ -15,10 +15,13 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path
+from scroll.views import *
 
+app_name = "scroll"
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include('web.urls')),
-    path('scroll/', include("scroll.urls"))
+    path('', index, name="index"),
+    path('api', travel_posts_api, name="api"),
+    path('trip/<str:location>', trip_to_blank, name="trip_saver")
+
 ]

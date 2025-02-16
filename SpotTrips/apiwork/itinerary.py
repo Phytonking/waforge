@@ -14,7 +14,7 @@ client = genai.Client(api_key=l['gemini'])
 def get_travel_itinerary(destination, days_of_travel, budget=None, depart_from=None):
     """Generates a travel itinerary using Gemini with popular excursions."""
 
-    prompt = f"Create a detailed travel itinerary for a trip to {destination} from {depart_from} lasting {days_of_travel} days.  Focus on including the most popular and highly-rated excursions and activities in the area."
+    prompt = f"Create a detailed travel itinerary for a trip to {destination} from {depart_from} lasting {days_of_travel} days.  Focus on including the most popular and highly-rated excursions and activities in the area. This plan must only include flights and hotels from the origin to the destination. "
 
     if budget:
         prompt += f" The budget for the trip is {budget}."  # Keep budget option if desired
@@ -64,6 +64,8 @@ def get_travel_itinerary(destination, days_of_travel, budget=None, depart_from=N
             return json.dumps(itinerary_json)
         except Exception as e:
             print(f"Error generating itinerary: {e}")
+            import time
+            time.sleep(0.5)
             continue
 
 

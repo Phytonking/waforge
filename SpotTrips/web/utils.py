@@ -3,15 +3,19 @@ import json
 
 
 # Function to generate HTML for the itinerary
-def generate_itinerary_html(itinerary):
+def generate_itinerary_html(itinerary: list):
     html_output = ""
 
     for day_info in itinerary:
-        day = day_info["day"]
-        travel_day = day_info["travel_day"]
-        excursions = day_info["excursions"]
-        restaurants = day_info["restaurants"]
-        
+        print(type(day_info))  # Make sure this is a dictionary
+        if isinstance(day_info, dict):
+            day = day_info["day"]
+            travel_day = day_info["travel_day"]
+            excursions = day_info["excursions"]
+            restaurants = day_info["restaurants"]
+        else:
+            return False
+            
         # Create a div for each day
         html_output += f'<div class="bg-white p-6 rounded-lg shadow-md border border-orange-200" style="margin-bottom: 20px; padding: 10px;">'
         html_output += f'<h3 class="text-lg font-medium text-orange-700">Day {day}</h3>'

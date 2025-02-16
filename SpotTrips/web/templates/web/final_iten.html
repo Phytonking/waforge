@@ -35,40 +35,45 @@
             </div>
         </div>
         -->
-        {% for flight in flights.flights %}
-    <div class="bg-white p-6 rounded-lg shadow-md border border-orange-200 mb-6">
-        <h3 class="text-lg font-medium text-orange-700">{{ flight.airline }} - Flight {{ flight.flight_number }}</h3>
-        
-        <p class="mt-2 text-gray-600">
-            <strong>Departure:</strong> {{ flight.departure_airport }} <br>
-            <strong>Time:</strong> {{ flight.departure_time }}
-        </p>
-        
-        <p class="mt-2 text-gray-600">
-            <strong>Arrival:</strong> {{ flight.arrival_airport }} <br>
-            <strong>Time:</strong> {{ flight.arrival_time }}
-        </p>
+        {% for part in flights_lists %}
+            {% for flight in part.flights %}
+                    <div class="bg-white p-6 rounded-lg shadow-md border border-orange-200 mb-6">
+                        <h3 class="text-lg font-medium text-orange-700">{{ flight.airline }} - Flight {{ flight.flight_number }}</h3>
+                        
+                        <p class="mt-2 text-gray-600">
+                            <strong>Departure:</strong> {{ flight.departure_airport.name }} ({{flight.departure_airport.id }})<br>
+                            <strong>Time:</strong> {{ flight.departure_airport.time }}
+                        </p>
+                        
+                        <p class="mt-2 text-gray-600">
+                            <strong>Arrival:</strong> {{ flight.arrival_airport.name }} ({{ flight.arrival_airport.id }})<br>
+                            <strong>Time:</strong> {{ flight.arrival_airport.time }}
+                        </p>
 
-        <p class="mt-2 text-gray-600"><strong>Duration:</strong> {{ flight.duration }} minutes</p>
-        <p class="mt-2 text-gray-600"><strong>Airplane:</strong> {{ flight.airplane }}</p>
-        <p class="mt-2 text-gray-600"><strong>Class:</strong> {{ flight.class }}</p>
-        <p class="mt-2 text-gray-600"><strong>Legroom:</strong> {{ flight.legroom }} in</p>
+                        <p class="mt-2 text-gray-600"><strong>Duration:</strong> {{ flight.duration }} minutes</p>
+                        <p class="mt-2 text-gray-600"><strong>Airplane:</strong> {{ flight.airplane }}</p>
+                        <p class="mt-2 text-gray-600"><strong>Class:</strong> {{ flight.travel_class }}</p>
+                        <p class="mt-2 text-gray-600"><strong>Legroom:</strong> {{ flight.legroom }} in</p>
+                        <h4 class="mt-2 text-gray-600"><strong>Price:</strong> $ {{ flight.price }}</h4>
 
-        <!-- Airline Image -->
-        <img src="{{ flight.airline_logo }}" alt="Airline Logo" class="mt-4 w-16 h-16 object-contain">
+                        <!-- Airline Image -->
+                        <img src="{{ flight.airline_logo }}" alt="Airline Logo" class="mt-4 w-16 h-16 object-contain">
 
-        <!-- Additional Info -->
-        <ul class="mt-4 text-gray-600 list-disc list-inside">
-            <li>Average legroom ({{ flight.legroom }} in)</li>
-            <li>Wi-Fi for a fee</li>
-            <li>In-seat power & USB outlets</li>
-            <li>Stream media to your device</li>
-            <li>Carbon emissions estimate: {{ flight.carbon_emissions }} kg</li>
-        </ul>
-    </div>
-    {% empty %}
-        <p class="text-gray-600">No flights available.</p>
-    {% endfor %}
+                        <!-- Additional Info -->
+                        <ul class="mt-4 text-gray-600 list-disc list-inside">
+                            <li>Average legroom ({{ flight.legroom }} in)</li>
+                            <li>Wi-Fi for a fee</li>
+                            <li>In-seat power & USB outlets</li>
+                            <li>Stream media to your device</li>
+                            <li>Carbon emissions estimate: {{ flight.carbon_emissions }} kg</li>
+                        </ul>
+                    </div>
+            {% empty %}
+                <p class="text-gray-600">No flights available.</p>
+            {% endfor %}
+        {% endfor %}
+                
+       
         
         
     <div class="bg-white p-6 rounded-lg shadow-md border border-orange-200">
