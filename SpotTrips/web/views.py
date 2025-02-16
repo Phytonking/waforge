@@ -35,10 +35,18 @@ def open_iten(request, id):
         iten.json = xlk
         iten.save()
         xt = generate_itinerary_html(json.loads(iten.json)["itinerary"])
-        return render(request, "web/iten.html", {"iten": xt})
+        return render(request, "web/iten.html", {"iten": xt, "id": iten.id})
 
 def book_iten(request, id):
-    
+    iten = Itenerary.objects.get(id=id)
+    if request.method == "GET":
+        #add user information
+        return render(request, "web/additional.html")
+    elif request.method == "POST":
+        response = create_offer_request("LHR", "JFK", "2020-04-24", "2020-04-30", user_info)
+        
+
+
 
 
 

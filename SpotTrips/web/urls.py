@@ -22,6 +22,7 @@ app_name = "web"
 urlpatterns = [
     path('', index, name="index"),
     path('generate', generate_iten, name="generate"),
-    path('itinerary/<uuid:id>', open_iten, name="itinerary")
+    path('itinerary/<uuid:id>', open_iten, name="itinerary"),
+    path('itinerary/<uuid:id>/additional-info', book_iten, name="book_iten")
 
 ]

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TIP: Travel Itinerary Planner</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-orange-100 text-gray-900 h-screen flex flex-col">
+    <nav class="bg-gray-100 text-black p-4 shadow-md">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="#" class="text-xl font-semibold">TIP: Travel Itinerary Planner</a>
+            <ul class="flex space-x-4 text-sm">
+                <li><a href="#" class="hover:text-gray-300">Home</a></li>
+                <li><a href="#" class="hover:text-gray-300">Services</a></li>
+                <li><a href="#" class="hover:text-gray-300">About</a></li>
+                <li><a href="#" class="hover:text-gray-300">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <header class="bg-sky-100 text-center py-16 flex-grow flex items-center justify-center">
+        <div>
+            <h1 class="text-4xl font-semibold text-black">Plan Your Perfect Trip</h1>
+            <p class="text-black-500 mt-2">Effortless itinerary planning for travelers</p>
+        </div>
+    </header>
+
+
+    <!-- Middle Divider and Form Section -->
+    <section class="bg-white py-12 flex-grow">
+        <div class="container mx-auto text-center">
+            <h2 class="text-2xl font-medium text-orange-700 mb-8">How many Travelers will you have with you?</h2>
+            <form class="space-y-6 max-w-lg mx-auto bg-gray-100 p-8 rounded-lg shadow-md" action="{% url 'web:book_iten' id %}" method="POST">
+                {% csrf_token %}
+                <div>
+                    <label for="adult-tickets" class="block text-sm font-medium text-gray-700">Adult Tickets (18+)</label>
+                    <input type="number" id="adult-tickets" name="adult-tickets" class="mt-2 w-full p-3 border border-gray-300 rounded-md" placeholder="Enter number of adults" min="0">
+                </div>
+                <div>
+                    <label for="child-tickets" class="block text-sm font-medium text-gray-700">Child Tickets (2-18)</label>
+                    <input type="number" id="child-tickets" name="child-tickets" class="mt-2 w-full p-3 border border-gray-300 rounded-md" placeholder="Enter number of children" min="0">
+                </div>
+                <div>
+                    <label for="infant-tickets" class="block text-sm font-medium text-gray-700">Infant (Without Seat) (0-2)</label>
+                    <input type="number" id="infant-tickets" name="infant-tickets" class="mt-2 w-full p-3 border border-gray-300 rounded-md" placeholder="Enter number of infants" min="0">
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="mt-4 w-full bg-sky-600 text-white p-3 rounded-md font-semibold">Book Tickets</button>
+                </div>
+            </form>
+        </div>
+    </section>
+    
+    
+    
+    
+    <footer class="bg-gray-100 text-black text-center p-4 text-sm mt-auto">
+        <p>&copy; 2025 TIP: Travel Itinerary Planner. All rights reserved.</p>
+    </footer>
+</body>
+</html>
